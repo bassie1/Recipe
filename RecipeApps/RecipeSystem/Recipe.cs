@@ -23,6 +23,7 @@ namespace RecipeSystem
             string sql = "select r.RecipeId, r.RecipeName, r.Calories, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus from recipe r where r.RecipeId = " + recipeid.ToString();
             return SQLUtility.GetDataTable(sql);
         }
+
         public static void Save(DataTable dtrecipe)
         {
             SQLUtility.DebugPrintDataTable(dtrecipe);
