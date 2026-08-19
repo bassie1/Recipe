@@ -25,6 +25,8 @@ namespace RecipeWinForms
             }
             WindowsFormsUtility.SetControlBinding(txtRecipeName, dtrecipe);
             WindowsFormsUtility.SetControlBinding(txtCalories, dtrecipe);
+            WindowsFormsUtility.SetControlBinding(txtCuisineType, dtrecipe);
+            WindowsFormsUtility.SetControlBinding(txtUserName, dtrecipe);
             WindowsFormsUtility.SetControlBinding(dtpDateDrafted, dtrecipe);
             WindowsFormsUtility.SetControlBinding(txtDatePublished, dtrecipe);
             WindowsFormsUtility.SetControlBinding(txtDateArchived, dtrecipe);
