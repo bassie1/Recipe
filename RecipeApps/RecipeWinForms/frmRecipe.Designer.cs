@@ -180,6 +180,7 @@
             txtDatePublished.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             txtDatePublished.Location = new Point(178, 293);
             txtDatePublished.Name = "txtDatePublished";
+            txtDatePublished.ReadOnly = true;
             txtDatePublished.Size = new Size(600, 38);
             txtDatePublished.TabIndex = 11;
             // 
@@ -190,6 +191,7 @@
             txtDateArchived.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             txtDateArchived.Location = new Point(178, 351);
             txtDateArchived.Name = "txtDateArchived";
+            txtDateArchived.ReadOnly = true;
             txtDateArchived.Size = new Size(600, 38);
             txtDateArchived.TabIndex = 12;
             // 
@@ -200,6 +202,7 @@
             txtRecipeStatus.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             txtRecipeStatus.Location = new Point(178, 409);
             txtRecipeStatus.Name = "txtRecipeStatus";
+            txtRecipeStatus.ReadOnly = true;
             txtRecipeStatus.Size = new Size(600, 38);
             txtRecipeStatus.TabIndex = 13;
             // 

@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
+﻿using System.Data;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CPUFramework;
 
 namespace RecipeSystem
@@ -56,8 +50,8 @@ namespace RecipeSystem
 
             else
             {
-                sql = "insert recipe(RecipeId, RecipeName, Calories, DateDrafted, RecipeStatus";
-                sql += $"select '{r["RecipeId"]}', {r["RecipeName"]}', {r["Calories"]}', {r["DateDrafted"]}', {r["RecipeStatus"]}";
+                sql = "insert recipe(CuisineId, UsersId, RecipeName, Calories, DateDrafted)";
+                sql += $"select '{r["CuisineId"]}', '{r["UsersId"]}', '{r["RecipeName"]}', '{r["Calories"]}', '{r["DateDrafted"]}'";
             }
 
             Debug.Print("-------");
