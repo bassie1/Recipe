@@ -46,8 +46,8 @@
             tblToolbar = new TableLayoutPanel();
             btnSave = new Button();
             btnDelete = new Button();
-            txtCuisineType = new TextBox();
-            txtUserName = new TextBox();
+            lstCuisineType = new ComboBox();
+            lstUserName = new ComboBox();
             tblMain.SuspendLayout();
             tblToolbar.SuspendLayout();
             SuspendLayout();
@@ -72,8 +72,8 @@
             tblMain.Controls.Add(lblCuisine, 0, 2);
             tblMain.Controls.Add(lblUSerName, 0, 3);
             tblMain.Controls.Add(tblToolbar, 0, 8);
-            tblMain.Controls.Add(txtCuisineType, 1, 2);
-            tblMain.Controls.Add(txtUserName, 1, 3);
+            tblMain.Controls.Add(lstCuisineType, 1, 2);
+            tblMain.Controls.Add(lstUserName, 1, 3);
             tblMain.Dock = DockStyle.Fill;
             tblMain.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             tblMain.Location = new Point(0, 0);
@@ -278,21 +278,21 @@
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
             // 
-            // txtCuisineType
+            // lstCuisineType
             // 
-            txtCuisineType.Dock = DockStyle.Fill;
-            txtCuisineType.Location = new Point(178, 119);
-            txtCuisineType.Name = "txtCuisineType";
-            txtCuisineType.Size = new Size(600, 38);
-            txtCuisineType.TabIndex = 21;
+            lstCuisineType.FormattingEnabled = true;
+            lstCuisineType.Location = new Point(178, 119);
+            lstCuisineType.Name = "lstCuisineType";
+            lstCuisineType.Size = new Size(151, 39);
+            lstCuisineType.TabIndex = 21;
             // 
-            // txtUserName
+            // lstUserName
             // 
-            txtUserName.Dock = DockStyle.Fill;
-            txtUserName.Location = new Point(178, 177);
-            txtUserName.Name = "txtUserName";
-            txtUserName.Size = new Size(600, 38);
-            txtUserName.TabIndex = 22;
+            lstUserName.FormattingEnabled = true;
+            lstUserName.Location = new Point(178, 177);
+            lstUserName.Name = "lstUserName";
+            lstUserName.Size = new Size(151, 39);
+            lstUserName.TabIndex = 22;
             // 
             // frmRecipe
             // 
@@ -329,7 +329,7 @@
         private TableLayoutPanel tblToolbar;
         private Button btnSave;
         private Button btnDelete;
-        private TextBox txtCuisineType;
-        private TextBox txtUserName;
+        private ComboBox lstCuisineType;
+        private ComboBox lstUserName;
     }
 }

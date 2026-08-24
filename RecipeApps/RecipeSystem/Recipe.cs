@@ -15,17 +15,28 @@ namespace RecipeSystem
         public static DataTable SearchRecipes(string recipename)
         {
             string sql = "select RecipeId, RecipeName from recipe r join Cuisine c on r.CuisineId = c.CuisineId join Users u on r.UsersId = u.UsersId where r.recipename like '%" + recipename + "%'";
-            DataTable dt = SQLUtility.GetDataTable(sql);
-            return dt;
+            return SQLUtility.GetDataTable(sql);
         }
 
         public static DataTable Load(int recipeid)
         {
-            string sql = "select r.RecipeId, r.RecipeName, c.CuisineType, u.UserName, r.Calories, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus from recipe r join Cuisine c on r.cuisineId = c.CuisineId join Users u on r.UsersId = u.UsersId where r.RecipeId = " + recipeid.ToString();
+            string sql = "select r.RecipeId, r.CuisineId, r.UsersId, r.RecipeName, c.CuisineType, u.UserName, r.Calories, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus from recipe r join Cuisine c on r.cuisineId = c.CuisineId join Users u on r.UsersId = u.UsersId where r.RecipeId = " + recipeid.ToString();
             return SQLUtility.GetDataTable(sql);
         }
 
-            public static void Save(DataTable dtrecipe)
+        public static DataTable GetCuisineList()
+        {
+            string sql = "select c.CuisineId, c.CuisineType from Cuisine c";
+            return SQLUtility.GetDataTable(sql);
+        }
+
+        public static DataTable GetUsersList()
+        {
+            string sql = "select u.UsersId, u.UserName from Users u";
+            return SQLUtility.GetDataTable(sql);
+        }
+
+        public static void Save(DataTable dtrecipe)
         {
             SQLUtility.DebugPrintDataTable(dtrecipe);
             DataRow r = dtrecipe.Rows[0];
@@ -39,9 +50,8 @@ namespace RecipeSystem
                     $"UsersId = '{r["UsersId"]}', ",
                     $"RecipeName = '{r["RecipeName"]}',",
                     $"Calories = '{r["Calories"]}',",
-                    $"Cuisine = '{r["Cuisine"]}',",
-                    $"UserName = '{r["UserName"]}',",
-                    $"DateDrafted = '{r["DateDrafted"]}'"); ;
+                    $"DateDrafted = '{r["DateDrafted"]}'",
+                    $"where RecipeId = '{r["RecipeId"]}'"); 
             }
 
             else

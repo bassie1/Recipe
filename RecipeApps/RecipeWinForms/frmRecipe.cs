@@ -23,10 +23,12 @@ namespace RecipeWinForms
             {
                 dtrecipe.Rows.Add();
             }
+            DataTable dtcuisine = Recipe.GetCuisineList();
+            DataTable dtusers = Recipe.GetUsersList();
             WindowsFormsUtility.SetControlBinding(txtRecipeName, dtrecipe);
             WindowsFormsUtility.SetControlBinding(txtCalories, dtrecipe);
-            WindowsFormsUtility.SetControlBinding(txtCuisineType, dtrecipe);
-            WindowsFormsUtility.SetControlBinding(txtUserName, dtrecipe);
+            WindowsFormsUtility.SetListBinding(lstCuisineType, dtcuisine, dtrecipe, "Cuisine");
+            WindowsFormsUtility.SetListBinding(lstUserName, dtusers, dtrecipe, "Users");
             WindowsFormsUtility.SetControlBinding(dtpDateDrafted, dtrecipe);
             WindowsFormsUtility.SetControlBinding(txtDatePublished, dtrecipe);
             WindowsFormsUtility.SetControlBinding(txtDateArchived, dtrecipe);
