@@ -1,4 +1,4 @@
-use RecipeDB
+--use RecipeDB
 go
 
 delete Recipe

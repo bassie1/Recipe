@@ -1,4 +1,4 @@
-use recipeDB
+--use recipeDB
 go 
 
 drop table if exists recipe
