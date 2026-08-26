@@ -43,8 +43,6 @@ namespace RecipeTest
 
         }
 
-
-
         [Test]
         public void InsertNewRecipe()
         {
