@@ -91,7 +91,7 @@ go
 
 create table dbo.Meal(
     MealId int not null identity primary key,
-    UserId int not null  
+    UsersId int not null  
         constraint f_Users_Meal foreign key references Users(UsersId),
     MealName varchar(100) not null 
         constraint ck_Meal_meal_name_cannot_be_blank check(MealName > ''),
@@ -112,7 +112,7 @@ go
 
 create table dbo.Cookbook(
     CookbookId int not null identity primary key,
-    UserId int not null 
+    UsersId int not null 
         constraint f_Users_Cookbook foreign key references Users(UsersId),
     CookbookName varchar(100) not null 
         constraint ck_Cookbook_cookbook_name_cannot_be_blank check(CookbookName > ''),

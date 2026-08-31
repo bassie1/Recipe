@@ -73,7 +73,20 @@ namespace RecipeTest
         [Test]
         public void DeleteRecipe()
         {
-            DataTable dt = SQLUtility.GetDataTable("select top 1 r.recipeid, r.recipename, r.calories from recipe r");
+            string sql = @" 
+                select top 1 r.RecipeId, r.RecipeName
+                from Recipe r
+                join RecipeIngredient ri 
+                on ri.RecipeId = r.RecipeId
+                left join Ingredient i 
+                on ri.IngredientId = i.IngredientId
+                left join RecipeDirections rd 
+                on rd.RecipeId = r.RecipeId
+                order by r.RecipeId
+                ";
+
+              
+            DataTable dt = SQLUtility.GetDataTable(sql);
             int recipeid = 0;
             string recipedesc = "";
             if (dt.Rows.Count > 0)
