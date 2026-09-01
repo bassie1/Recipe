@@ -76,16 +76,15 @@ namespace RecipeTest
             string sql = @" 
                 select top 1 r.RecipeId, r.RecipeName
                 from Recipe r
-                join RecipeIngredient ri 
-                on ri.RecipeId = r.RecipeId
-                left join Ingredient i 
-                on ri.IngredientId = i.IngredientId
-                left join RecipeDirections rd 
-                on rd.RecipeId = r.RecipeId
+                left join CookbookRecipe cr 
+                on cr.RecipeId = r.RecipeId
+                left join MealCourseRecipe mcr
+                on mcr.RecipeId = r.RecipeId
+                where cr.CookbookRecipeId is null
+                and mcr.MealCourseRecipeId is null
                 order by r.RecipeId
                 ";
 
-              
             DataTable dt = SQLUtility.GetDataTable(sql);
             int recipeid = 0;
             string recipedesc = "";
