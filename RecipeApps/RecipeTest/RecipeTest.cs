@@ -82,6 +82,7 @@ namespace RecipeTest
                 on mcr.RecipeId = r.RecipeId
                 where cr.CookbookRecipeId is null
                 and mcr.MealCourseRecipeId is null
+                and (datediff(day, r.DateArchived, getdate()) > 30 or r.RecipeStatus = 'drafted')
                 order by r.RecipeId
                 ";
 
@@ -100,6 +101,42 @@ namespace RecipeTest
             DataTable dtafterdelete = SQLUtility.GetDataTable("select * from recipe where recipeid = " + recipeid);
             Assert.IsTrue(dtafterdelete.Rows.Count == 0, "record with recipeid " + recipeid + " exists in DB");
             TestContext.WriteLine("record with recipeid " + recipeid + " does not exist in DB");
+        }
+
+
+        [Test]
+        public void DeleteRecipeWithBusinessRule()
+        {
+            string sql = @" 
+                select top 1 r.RecipeId, r.RecipeName
+                from Recipe r
+                left join CookbookRecipe cr 
+                on cr.RecipeId = r.RecipeId
+                left join MealCourseRecipe mcr
+                on mcr.RecipeId = r.RecipeId
+                where cr.CookbookRecipeId is null
+                and mcr.MealCourseRecipeId is null
+                and mcr.MealCourseRecipeId is null
+                and (datediff(day, r.DateArchived, getdate()) <= 30 or r.RecipeStatus <> 'drafted')
+				and not (r.recipeStatus = 'archived' and datediff(day, r.DateArchived, getdate()) > 30)
+                order by r.RecipeId
+                ";
+
+            DataTable dt = SQLUtility.GetDataTable(sql);
+            int recipeid = 0;
+            string recipedesc = "";
+            if (dt.Rows.Count > 0)
+            {
+                recipeid = (int)dt.Rows[0]["recipeid"];
+                recipedesc = (string)dt.Rows[0]["recipename"];
+            }
+            Assume.That(recipeid > 0, "no recipes in DB, can't run test");
+            TestContext.WriteLine("existing recipe with id = " + recipeid + " " + recipedesc);
+            TestContext.WriteLine("ensure that app can delete " + recipeid);
+
+            Exception ex = Assert.Throws<Exception>(() => Recipe.Delete(dt));
+
+            TestContext.WriteLine(ex.Message);
         }
 
         [Test]
