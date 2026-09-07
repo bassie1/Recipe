@@ -116,7 +116,6 @@ namespace RecipeTest
                 on mcr.RecipeId = r.RecipeId
                 where cr.CookbookRecipeId is null
                 and mcr.MealCourseRecipeId is null
-                and mcr.MealCourseRecipeId is null
                 and (datediff(day, r.DateArchived, getdate()) <= 30 or r.RecipeStatus <> 'drafted')
 				and not (r.recipeStatus = 'archived' and datediff(day, r.DateArchived, getdate()) > 30)
                 order by r.RecipeId

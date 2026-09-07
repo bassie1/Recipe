@@ -121,7 +121,7 @@ union select 'MH564', 'Light and Easy Supper', 1, '09/15/24'
 union select 'YS945', 'Shabbos Party', 0, '07/29/24'
 union select 'CS435', 'Delicious Dinner', 1, '11/11/24'
 )
-insert Meal(UserId, MealName, MealActive, DateCreated)
+insert Meal(UsersId, MealName, MealActive, DateCreated)
 select u.UsersId, x.MealName, x.MealActive, x.DateCreated
 from x 
 join Users u 
@@ -152,7 +152,7 @@ union select 'Baker''s Collection', 1, 28, getdate(), 'CS435'
 union select 'Quick and Easy', 0, 25, getdate(), 'MH564'
 union select 'Dairy Delectables',  1, 32, getdate(),'MH564' 
 )
-insert Cookbook(UserId, CookbookName, CookbookActive, Price, DateCreated)
+insert Cookbook(UsersId, CookbookName, CookbookActive, Price, DateCreated)
 select u.UsersId, x.CookbookName, x.CookbookActive, x.Price, x.DateCreated
 from x 
 join Users u
@@ -163,22 +163,22 @@ go
 ; 
 with x as(
     select CookbookName = 'Treats for Two', RecipeName = 'Chocolate Chip Cookies', RecipeSequence = 1
-    union select 'Treats for Two', 'Apple Yogurt Smoothie', 2
+    --union select 'Treats for Two', 'Apple Yogurt Smoothie', 2
     union select 'Treats for Two', 'Cheese Bread', 3
     union select 'Treats for Two', 'Butter Muffins', 4
     union select 'Baker''s Collection', 'Chocolate Chip Cookies', 1
     union select 'Baker''s Collection', 'Butter Muffins', 2
     union select 'Baker''s Collection', 'Peanut Chews', 3
     union select 'Quick and Easy', 'Potato Latkes', 1
-    union select 'Quick and Easy', 'Cheesy Pasta', 2
+    --union select 'Quick and Easy', 'Cheesy Pasta', 2
     union select 'Quick and Easy', 'Colorful Toss Salad', 3
     union select 'Quick and Easy', 'Cheese Bread', 4
-    union select 'Quick and Easy', 'Apple Yogurt Smoothie', 5
+    --union select 'Quick and Easy', 'Apple Yogurt Smoothie', 5
     union select 'Dairy Delectables', 'Butter Muffins', 1
     union select 'Dairy Delectables', 'Cheese Bread', 2
     union select 'Dairy Delectables', 'Fancy Scrambled Eggs', 3
-    union select 'Dairy Delectables', 'Apple Yogurt Smoothie', 4
-    union select 'Dairy Delectables', 'Cheesy Pasta', 5
+    --union select 'Dairy Delectables', 'Apple Yogurt Smoothie', 4
+    --union select 'Dairy Delectables', 'Cheesy Pasta', 5
 )
 insert CookbookRecipe(CookbookId, RecipeId, RecipeSequence)
 select  c.CookbookId, r.RecipeId, x.RecipeSequence
@@ -214,14 +214,14 @@ on x.CourseType = cr.CourseType
 with x as(
     select MealName = 'Breakfast Bash', RecipeName = 'Cheese Bread', CourseType ='Main Course', MainDish = 1
     union select 'Breakfast Bash', 'Butter Muffins', 'Main Course', 0
-    union select 'Breakfast Bash', 'Apple Yogurt Smoothie', 'Appetizer', 0
+    --union select 'Breakfast Bash', 'Apple Yogurt Smoothie', 'Appetizer', 0
     union select 'Light and Easy Supper', 'Colorful Toss Salad', 'Appetizer', 0
     union select 'Light and Easy Supper', 'Fancy Scrambled Eggs', 'Main Course', 1
-    union select 'Light and Easy Supper', 'Cheesy Pasta', 'Main Course', 0
-    union select 'LIght and Easy Supper', 'Peanut Chews', 'Dessert', 0
+    --union select 'Light and Easy Supper', 'Cheesy Pasta', 'Main Course', 0
+    union select 'Light and Easy Supper', 'Peanut Chews', 'Dessert', 0
     union select 'Shabbos Party', 'Chocolate Chip Cookies', 'Dessert', 0
     union select 'Shabbos Party', 'Peanut Chews', 'Dessert', 0
-    union select 'Delicious Dinner', 'Apple Yogurt Smoothie', 'Appetizer', 0
+    --union select 'Delicious Dinner', 'Apple Yogurt Smoothie', 'Appetizer', 0
     union select 'Delicious Dinner', 'Potato Latkes', 'Main Course', 1
     union select 'Delicious Dinner', 'Colorful Toss Salad', 'Main Course', 0
 )
