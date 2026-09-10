@@ -1,11 +1,11 @@
 create or alter function dbo.TotalMealCalories(@MealId int)
-returns varchar(110)
+returns int
 
 as
 begin
-	declare @value varchar (110) = ''
+	declare @value int = 0
 
-	select @value = concat(m.MealName, ' ', sum(r.Calories))
+	select @value = sum(r.Calories)
 	from Meal m 
 	left join MealCourse mc
 	on mc.MealId = m.MealId
@@ -14,12 +14,11 @@ begin
 	left join Recipe r 
 	on r.RecipeId = mcr.RecipeId
 	where m.MealId = @MealId
-	group by m.MealName
 
 	return @value
 
 end
 go
 
-select TotalMealCalories = dbo.TotalMealCalories(m.MealId)
+select m.MealName, TotalMealCalories = dbo.TotalMealCalories(m.MealId)
 from Meal m

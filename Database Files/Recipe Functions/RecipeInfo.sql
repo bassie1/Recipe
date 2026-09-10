@@ -7,9 +7,9 @@ begin
 	select @value = concat(
 		r.RecipeName, 
 		' (', c.CuisineType, ') ', 'has ', 
-		(max(ri.IngredientSequence)), 
+		(count (distinct ri.RecipeIngredientId)), 
 		' ingredients and ', 
-		(max(rd.DirectionSequence)), 
+		(count (distinct rd.RecipeDirectionsId)), 
 		' steps.')
 	from Recipe r 
 	left join Cuisine c 
